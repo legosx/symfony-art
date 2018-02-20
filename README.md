@@ -65,8 +65,6 @@ size - 1, 2 or 3
 
 For example, this url will output Large Tree:
 
-http://localhost:8000
-
 http://localhost:8000/?type=2&size=3
 
 ### Command Line
