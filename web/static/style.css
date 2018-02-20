@@ -1,0 +1,24 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+
+.container {
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    display: table;
+}
+
+.container-row {
+    display: table-cell;
+    vertical-align: middle;
+    text-align: center;
+}
+
+.shape {
+    font-family: "Courier New", Courier, monospace, "Lucida Console", Monaco;
+    display: inline-block;
+    text-align: left;
+}
