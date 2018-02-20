@@ -55,7 +55,7 @@ Sizes:
 To output shape right in the browser open the main page:
 http://localhost:8000
 
-By default Medium Star is outputed.
+By default Medium Star is outputted.
 
 If you want to output other shapes, use request parameters.
 
