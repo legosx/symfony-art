@@ -67,7 +67,7 @@ For example, this url will output Large Tree:
 
 http://localhost:8000
 
-http://symfony-art/?type=2&size=3
+http://localhost:8000/?type=2&size=3
 
 ### Command Line
 
