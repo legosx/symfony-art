@@ -2,6 +2,11 @@
 
 This project can output ASCII trees and stars both in the browser and in the command line
 
+## Requirements
+
+- PHP 7.0
+- PDO SQLite Driver 
+
 ## To Run:
 
 ~~~
