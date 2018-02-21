@@ -100,7 +100,7 @@ To output a shape in command line just run the following command:
    +
 ``` 
 
-By default random shape is outputted
+By default random shape is outputted.
 
 Another way to output a shape is to define parameters. You will see the shape immediately.
 For example:
