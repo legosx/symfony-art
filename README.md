@@ -15,7 +15,7 @@ This project can output ASCII trees and stars both in the browser and in the com
 composer install
 ~~~
 
-During installation you will be asked about database and token.
+During installation you will be asked about a database and a token.
 
 You can keep these fields blank if default parameters are ok for you.
 
