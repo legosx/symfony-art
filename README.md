@@ -148,7 +148,6 @@ src/AppBundle/Controller/ShapeController.php
 src/AppBundle/DataFixtures/ShapeFixtures.php
 src/AppBundle/Entity/Shape.php
 src/AppBundle/Repository/ShapeRepository.php
-
 ```
 
 Tests (PHPUnit):
@@ -156,7 +155,6 @@ Tests (PHPUnit):
 ```
 tests/AppBundle/Command/ShapeCommandTest.php
 tests/AppBundle/Controller/ShapeControllerTest.php
-
 ```
 
 Styles (CSS):
