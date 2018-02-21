@@ -19,8 +19,7 @@ class ShapeControllerTest extends WebTestCase
 
         $this->assertEquals(200, $client->getResponse()->getStatusCode());
         $html = str_replace('&nbsp;', ' ', strip_tags($client->getResponse()->getContent()));
-        $needle = str_replace("\n", PHP_EOL, $output);
-        $this->assertContains($needle, $html);
+        $this->assertContains($output, $html);
     }
 
     public function providerTestIndex()
