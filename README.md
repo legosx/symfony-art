@@ -8,6 +8,18 @@ This project can output ASCII trees and stars both in the browser and in the com
 composer install
 ~~~
 
+During installation you will be asked about database and token.
+
+You can keep these fields blank if default parameters are ok for you.
+
+```
+> Incenteev\ParameterHandler\ScriptHandler::buildParameters
+Creating the "app/config/parameters.yml" file
+Some parameters are missing. Please provide them.
+database_path ('%kernel.project_dir%/var/data/data.sqlite'):
+secret (ThisTokenIsNotSoSecretChangeIt):
+```
+
 Create DB:
 
 ~~~
@@ -52,7 +64,7 @@ Sizes:
 
 ### Browser
 
-To output shape right in the browser open the main page:
+To output a shape right in the browser open the main page:
 http://localhost:8000
 
 By default Medium Star is outputted.
@@ -121,4 +133,47 @@ Execute this command to run tests:
 
 ```
 ./vendor/bin/simple-phpunit
+```
+
+## List of my own files and modifications
+
+Configuration files:
+
+```
+app/config/config.yml
+app/config/parameters.yml.dist
+app/AppKernel.php
+composer.json
+```
+
+Views (twig format):
+
+```
+app/Resources/views/default/index.html.twig
+app/Resources/views/base.html.twig
+```
+
+Models and Controllers:
+
+```
+src/AppBundle/Command/ShapeCommand.php
+src/AppBundle/Controller/ShapeController.php
+src/AppBundle/DataFixtures/ShapeFixtures.php
+src/AppBundle/Entity/Shape.php
+src/AppBundle/Repository/ShapeRepository.php
+
+```
+
+Tests (PHPUnit):
+
+```
+tests/AppBundle/Command/ShapeCommandTest.php
+tests/AppBundle/Controller/ShapeControllerTest.php
+
+```
+
+Styles (CSS):
+
+```
+web/static/style.css
 ```
