@@ -3,10 +3,12 @@
 namespace AppBundle\Command;
 
 use AppBundle\Entity\Shape;
+use AppBundle\Repository\ShapeRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Illuminate\Support\Arr;
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 use Symfony\Component\Console\Exception\CommandNotFoundException;
+use Symfony\Component\Console\Exception\InvalidOptionException;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -39,44 +41,29 @@ class ShapeCommand extends ContainerAwareCommand
         $this->io = new SymfonyStyle($input, $output);
     }
 
-    protected function interact(InputInterface $input, OutputInterface $output)
-    {
-        if (null !== $input->getOption('type') && null !== $input->getOption('size')) {
-            return;
-        }
-
-        $type = $input->getOption('type');
-        if (null !== $type) {
-            $this->io->text(' > <info>Type</info>: ' . $type);
-        } else {
-            $map = Shape::$type_list;
-            $type = $this->io->choice('Type', $map, Arr::get($map, Shape::TYPE_STAR));
-            $type = Arr::get(array_flip($map), $type);
-            $input->setOption('type', $type);
-        }
-
-        $size = $input->getOption('size');
-        if (null !== $size) {
-            $this->io->text(' > <info>Size</info>: ' . $size);
-        } else {
-            $map = Shape::$size_list;
-            $size = $this->io->choice('Size', $map, Arr::get($map, Shape::SIZE_MEDIUM));
-            $size = Arr::get(array_flip($map), $size);
-            $input->setOption('size', $size);
-        }
-    }
-
     protected function execute(InputInterface $input, OutputInterface $output)
     {
+        $type = $input->getOption('type');
+        $size = $input->getOption('size');
+
+        /** @var ShapeRepository $rep */
         $rep = $this->entityManager->getRepository(Shape::class);
-        /** @var Shape $shape */
-        $shape = $rep->findOneBy([
-            'type' => $input->getOption('type'),
-            'size' => $input->getOption('size')
-        ]);
+
+        if ($type && $size) {
+            $shape = $rep->getShapeBy($type, $size);
+        } else {
+            if (!$type && !$size) {
+                $shape = $rep->getShapeRandom();
+            } else {
+                throw new InvalidOptionException('Please, specify type and size');
+            }
+        }
+
         if (!$shape) {
             throw new CommandNotFoundException('Shape not found');
         }
+
+        /** @var Shape $shape */
         $output->writeln($shape->getRaw());
     }
 

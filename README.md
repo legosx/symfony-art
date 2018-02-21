@@ -65,9 +65,10 @@ Sizes:
 ### Browser
 
 To output a shape right in the browser open the main page:
+
 http://localhost:8000
 
-By default Medium Star is outputted.
+By default random shape is outputted.
 
 If you want to output other shapes, use request parameters.
 
@@ -81,39 +82,18 @@ http://localhost:8000/?type=2&size=3
 
 ### Command Line
 
-#### Ask for input
-Just execute following in the command line and command asks you about parameters:
-
-```
-php bin/console shape
-```
-
-For example it gives you following:
+To output a shape in command line just run the following command:
 
 ```
 > php bin/console shape
+   +
+   X
++XXXXX+
+   X
+   +
+``` 
 
- Type [Star]:
-  [1] Star
-  [2] Tree
- > 2
-
- Size [Medium]:
-  [1] Small
-  [2] Medium
-  [3] Large
- > 2
-
-     +
-     X
-    XXX
-   XXXXX
-  XXXXXXX
- XXXXXXXXX
-XXXXXXXXXXX
-```
-
-#### Define parameters explicitly
+By default random shape is outputted
 
 Another way to show you a shape is define parameters. You will see the shape immediately.
 For example:

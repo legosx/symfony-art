@@ -27,17 +27,6 @@ class ShapeControllerTest extends WebTestCase
     {
         return [
             [
-                [], <<< EOT
-     +
-     X
-   XXXXX
-+XXXXXXXXX+
-   XXXXX
-     X
-     +
-EOT
-            ],
-            [
                 [
                     'type' => 1,
                     'size' => 1
@@ -124,7 +113,7 @@ EOT
  XXXXXXXXXXXXXXXXX
 XXXXXXXXXXXXXXXXXXX
 EOT
-            ],
+            ]
         ];
     }
 }

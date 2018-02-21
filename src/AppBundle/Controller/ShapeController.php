@@ -7,7 +7,9 @@ use Doctrine\ORM\EntityManagerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use AppBundle\Repository\ShapeRepository;
 
 class ShapeController extends Controller
 {
@@ -16,19 +18,26 @@ class ShapeController extends Controller
      */
     public function indexAction(Request $request, EntityManagerInterface $em)
     {
-        $type = $request->get('type', Shape::TYPE_STAR);
-        $size = $request->get('size', Shape::SIZE_MEDIUM);
-        if (!in_array($type, array_keys(Shape::$type_list)) || !in_array($size, array_keys(Shape::$size_list))) {
+        $type = $request->get('type');
+        $size = $request->get('size');
+
+        /** @var ShapeRepository $rep */
+        $rep = $em->getRepository(Shape::class);
+        if ($type && $size) {
+            $shape = $rep->getShapeBy($type, $size);
+        } else {
+            if (!$type && !$size) {
+                $shape = $rep->getShapeRandom();
+            } else {
+                throw new BadRequestHttpException('Please, specify type and size');
+            }
+        }
+
+        if (!$shape) {
             throw new NotFoundHttpException('Shape not found');
         }
 
-        $rep = $em->getRepository(Shape::class);
         /** @var Shape $shape */
-        $shape = $rep->findOneBy([
-            'type' => $type,
-            'size' => $size
-        ]);
-
         return $this->render('default/index.html.twig', [
             'shape' => $shape->getRaw(true)
         ]);

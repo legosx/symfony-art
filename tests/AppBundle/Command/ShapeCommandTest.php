@@ -11,10 +11,7 @@
 
 namespace Tests\Command;
 
-use AppBundle\Command\AddUserCommand;
 use AppBundle\Command\ShapeCommand;
-use AppBundle\Entity\User;
-use AppBundle\Utils\Validator;
 use Symfony\Bundle\FrameworkBundle\Console\Application;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 use Symfony\Component\Console\Tester\CommandTester;
@@ -34,24 +31,7 @@ class ShapeCommandTest extends KernelTestCase
             $args['--' . $parameter] = $value;
         }
         $command_output = $this->executeCommand($args);
-        $needle = str_replace("\n", PHP_EOL, $output);
-        $this->assertContains($needle, $command_output);
-    }
-
-    /**
-     * @dataProvider providerTestShapeNonInteractive
-     * @param $parameters
-     * @param $output
-     */
-    public function testShapeInteractive($parameters, $output)
-    {
-        $args = [];
-        foreach ($parameters as $parameter => $value) {
-            $args['--' . $parameter] = $value;
-        }
-        $command_output = $this->executeCommand([], $args);
-        $needle = str_replace("\n", PHP_EOL, $output);
-        $this->assertContains($needle, $command_output);
+        $this->assertContains($output, $command_output);
     }
 
     private function executeCommand(array $arguments, array $inputs = [])
@@ -158,7 +138,7 @@ EOT
  XXXXXXXXXXXXXXXXX
 XXXXXXXXXXXXXXXXXXX
 EOT
-            ],
+            ]
         ];
     }
 }

@@ -2,6 +2,8 @@
 
 namespace AppBundle\Repository;
 
+use AppBundle\Entity\Shape;
+
 /**
  * ShapeRepository
  *
@@ -10,4 +12,19 @@ namespace AppBundle\Repository;
  */
 class ShapeRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function getShapeBy($type, $size)
+    {
+        return $this->findOneBy([
+            'type' => $type,
+            'size' => $size
+        ]);
+    }
+
+    public function getShapeRandom()
+    {
+        return $this->findOneBy([
+            'type' => array_rand(Shape::$type_list),
+            'size' => array_rand(Shape::$size_list)
+        ]);
+    }
 }
