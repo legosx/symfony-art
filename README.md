@@ -4,8 +4,9 @@ This project can output ASCII trees and stars both in the browser and in the com
 
 ## Requirements
 
+- Composer
 - PHP 7.0
-- PDO SQLite extension for PHP 
+- PDO SQLite extension for PHP
 
 ## To Run:
 
